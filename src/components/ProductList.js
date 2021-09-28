@@ -1,8 +1,8 @@
 import React from "react";
+import ProductCard from "./ProductCard";
 
 export default function ProductList(props) {
-    const products = ['Apple', 'Mango', 'Orange', 'Banana', 'Kiwi']
-    return (<div>
-        {products.map(product => <h1>{product}</h1>)}
-    </div>);
+    const products = ['Apple', 'Mango', 'Orange', 'Banana', 'Kiwi'];
+    const personList = products.map(product => (<ProductCard product={product} />));
+    return (<div>{personList}</div>);
 }
