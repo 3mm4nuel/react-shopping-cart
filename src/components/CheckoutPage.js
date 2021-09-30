@@ -7,4 +7,4 @@ export const CheckoutPage = styled.div`
     height: 100vh;
     background-color: papayawhip;
     white-space: nowrap;
-`
+`;
