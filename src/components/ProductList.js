@@ -1,7 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import {StyledProductCard} from "./ProductCard";
+import StyledProductCard from "./ProductCard";
 import {data} from "./data"
+
+const Ul = styled.ul`
+  list-style: none;
+  padding-right: 0;
+`
+
+export const StyledProductList = styled(ProductList)`
+    align-items: center;
+    border: 10px solid green;
+`
 
 export default function ProductList({className, props}) {
     const [items, setItems] = React.useState(data);
@@ -11,13 +21,8 @@ export default function ProductList({className, props}) {
         setItems(items.filter(product => product.id !== id));
     };
 
-    const productList = <ul style={{listStyle: 'none', paddingLeft: 0}}>
+    const productList = <Ul>
                             {items.map(product => <StyledProductCard key={product.id} product={product} removeHandler={removeProduct}></StyledProductCard>)}
-                        </ul>;
+                        </Ul>;
     return (<div className={className}>{productList}</div>);
 }
-
-export const StyledProductList = styled(ProductList)`
-    align-items: center;
-    border: 10px solid green;
-`

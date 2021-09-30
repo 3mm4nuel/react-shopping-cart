@@ -1,15 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function ProductCard({className, product, removeHandler}) {
-
-    return (<li> 
-                {product.value}
-                <button onClick={() => removeHandler(product.id)}>remove</button>
-            </li>);
-}
-
-export const StyledProductCard = styled(ProductCard)` 
+const Li = styled.li` 
     color: red;
     max-width: 700px;
     text-align: center;
@@ -19,3 +11,12 @@ export const StyledProductCard = styled(ProductCard)`
     padding: 50px;
     background-color: white;
 `;
+
+export default function ProductCard({ product, removeHandler}) {
+    return (
+      <Li> 
+        {product.value}
+         <button onClick={() => removeHandler(product.id)}>remove</button>
+      </Li>
+    );
+}
