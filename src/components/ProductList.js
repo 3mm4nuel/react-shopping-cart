@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import StyledProductCard from "./ProductCard";
+import ProductCard from "./ProductCard";
 import {data} from "./data"
 
 const Ul = styled.ul`
@@ -22,7 +22,7 @@ export default function ProductList({className, props}) {
     };
 
     const productList = <Ul>
-                            {items.map(product => <StyledProductCard key={product.id} product={product} removeHandler={removeProduct}></StyledProductCard>)}
+                            {items.map(product => <ProductCard key={product.id} product={product} removeHandler={removeProduct}></ProductCard>)}
                         </Ul>;
     return (<div className={className}>{productList}</div>);
 }
