@@ -8,21 +8,15 @@ const Ul = styled.ul`
   padding-right: 0;
 `
 
-export const StyledProductList = styled(ProductList)`
-    align-items: center;
-    border: 10px solid green;
-`
-
-export default function ProductList({className, props}) {
+export default function ProductList({total, updateTotalHandler}) {
     const [items, setItems] = React.useState(data);
 
     function removeProduct(id) {
-        console.log(id);
         setItems(items.filter(product => product.id !== id));
     };
 
     const productList = <Ul>
-                            {items.map(product => <ProductCard key={product.id} product={product} removeHandler={removeProduct}></ProductCard>)}
+                            {items.map(product => <ProductCard key={product.id} product={product} removeHandler={removeProduct} total={total} updateTotalHandler={updateTotalHandler}></ProductCard>)}
                         </Ul>;
-    return (<div className={className}>{productList}</div>);
+    return (<div>{productList}</div>);
 }

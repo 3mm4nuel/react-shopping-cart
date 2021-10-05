@@ -30,8 +30,8 @@ const StyledQuantityModifier = styled(QuantityModifier)`
 
 `
 
-export default function ProductCard({ product, removeHandler}) {
-    const [quantity, setQuantity] = React.useState(product.quantity)
+export default function ProductCard({ product, removeHandler, total, updateTotalHandler}) {
+    const [quantity, setQuantity] = React.useState(product.initialQuantity)
 
     function incrementQuantity() {
         setQuantity(prevQuantity => prevQuantity + 1)
@@ -46,18 +46,18 @@ export default function ProductCard({ product, removeHandler}) {
       <Li> 
         {product.value}
         <Button onClick={() => removeHandler(product.id)}>remove</Button>
-        <StyledQuantityModifier quantity={quantity} incrementHandler={incrementQuantity} decrementHanlder={decrementQuantity}></StyledQuantityModifier>
+        <StyledQuantityModifier quantity={quantity} incrementHandler={incrementQuantity} decrementHandler={decrementQuantity} updateTotalHandler={updateTotalHandler}></StyledQuantityModifier>
       </Li>
     );
 }
 
 
-function QuantityModifier({className, quantity, incrementHandler, decrementHanlder}) {
+function QuantityModifier({className, quantity, incrementHandler, decrementHandler, updateTotalHandler}) {
     return (
     <div className={className}>
-        <button onClick={decrementHanlder}>-</button>
+        <button onClick={() => {decrementHandler(); updateTotalHandler(quantity)}}>-</button>
         <span>{quantity}</span>
-        <button onClick={incrementHandler}>+</button>
+        <button onClick={() => {incrementHandler(); updateTotalHandler(quantity)}}>+</button>
     </div>
     );
 }
