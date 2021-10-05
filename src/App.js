@@ -6,18 +6,27 @@ import { data } from "./components/data"
 import CartTotal from './components/CartTotal'
 
 function App() {
-  var totalAmount = data.reduce((sum, product) => sum + (product.initialQuantity * product.price),0);
-  const [total, setTotal] = React.useState(totalAmount);
+  const [items, setItems] = React.useState(data);
 
-  function updateTotal(quantity) {
-    console.log(quantity);
-    setTotal(data.reduce((sum, product) => sum + (quantity * product.price),total));
+  function removeProduct(id) {
+      setItems(items.filter(product => product.id !== id));
   }
+
+  /**
+   * 
+   * @param {boolean} quantity New quantity that we want to set
+   * @param {integer} productId id of the product
+   */
+  function updateProductQuantity(quantity, productId) {
+    setItems(items => items.map(item => item.id === productId ? {...item, initialQuantity: quantity} : item))
+  }
+  
+  const total = items.reduce((sum, item) => sum + (item.initialQuantity * item.price), 0)
 
   return (
     <CheckoutPage>
       <StyledHeader></StyledHeader>
-      <ProductList total={total} updateTotalHandler={updateTotal}></ProductList>
+      <ProductList items={items} updateProductQuantity={updateProductQuantity} removeProduct={removeProduct}></ProductList>
       <CartTotal total={total}></CartTotal>
     </CheckoutPage>
   );
