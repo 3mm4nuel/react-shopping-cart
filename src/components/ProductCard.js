@@ -34,7 +34,7 @@ export default function ProductCard({ product, removeHandler, updateProductQuant
 
     return (
       <Li> 
-        {product.value}
+        {product.value} ${product.price}
         <Button onClick={() => removeHandler(product.id)}>remove</Button>
         <StyledQuantityModifier productId={product.id} quantity={product.initialQuantity} updateProductQuantity={updateProductQuantity}></StyledQuantityModifier>
       </Li>

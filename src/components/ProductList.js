@@ -4,7 +4,8 @@ import ProductCard from "./ProductCard";
 
 const Ul = styled.ul`
   list-style: none;
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
 `
 
 export default function ProductList({items, updateProductQuantity, removeProduct}) {
